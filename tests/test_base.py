@@ -50,3 +50,13 @@ class TestBase_instantiation(unittest.TestCase):
 		self.assertEqual(model_dict['created_at'], model.created_at.isoformat())
 		self.assertEqual(model_dict['updated_at'], model.updated_at.isoformat())
 		self.assertEqual(type(model_dict['id']), str)
+
+	def test_init_from_dict(self):
+		"""Test that __init__ can create an instance from a dictionary"""
+		model = BaseModel()
+		model_dict = model.to_dict()
+		new_model = BaseModel(**model_dict)
+		self.assertEqual(type(new_model), BaseModel)
+		self.assertEqual(new_model.id, model.id)
+		self.assertEqual(new_model.created_at, model.created_at)
+		self.assertEqual(new_model.updated_at, model.updated_at)
