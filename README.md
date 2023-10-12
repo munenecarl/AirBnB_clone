@@ -1,5 +1,4 @@
 # 0x00. AirBnB clone - The console
-![AirBnB_clone](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230521%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230521T123642Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=23adde43b701de77971e51fc363a6b759231a41bc1f20c2660dda5e5e0482c65)
 
 ## Background Context
 ### Welcome to the AirBnB clone project!
@@ -132,5 +131,3 @@ EOF  help  quit
 $
 ```
 All tests should also pass in non-interactive mode: `$ echo "python3 -m unittest discover tests" | bash`
-
-![path](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230521%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230521T125125Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=ba6d61d2384d6da83cd36105b413d2e0519dda1e7235164272b9c2a064be57aa)
