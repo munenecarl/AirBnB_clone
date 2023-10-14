@@ -126,7 +126,8 @@ class HBNBCommand(cmd.Cmd):
             objs = storage.all(cls)
         else:
             objs = storage.all()
-
+        if len(objs) == 0:
+            print("[]")
         for obj in objs.values():
             print(obj)
 
