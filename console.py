@@ -117,17 +117,18 @@ class HBNBCommand(cmd.Cmd):
         """all command that prints all string representation of all instances"""
         from models import storage
 
-        if line == "":
-            objs = storage.all()
-        else:
+        if line:
             try:
                 cls = eval(line)
-                objs = storage.all(cls)
             except:
                 print("** class doesn't exist **")
                 return
+            objs = storage.all(cls)
+        else:
+            objs = storage.all()
 
-        print("[{}]".format(", ".join(str(obj) for obj in objs.values())))
+        for obj in objs.values():
+            print(obj)
 
     def do_update(self, line):
         """update command that updates an instance based on the class name and id"""
@@ -159,6 +160,42 @@ class HBNBCommand(cmd.Cmd):
         setattr(objs[key], args[2], args[3])
         objs[key].save()
 
+    def do_count(self, line):
+        """count command that retrieves the number of instances of a class"""
+        from models import storage
+
+        args = line.split('.')
+        if len(args) == 1:
+            class_name = args[0]
+            if class_name not in my_classes:
+                print("** class doesn't exist **")
+                return
+            else:
+                count = 0
+                objects = storage.all()
+                for obj in objects.values():
+                    if class_name == obj.__class__.__name__:
+                        count += 1
+                print(count)
+        elif len(args) == 2:
+            class_name = args[0]
+            method_name = args[1]
+            if class_name not in my_classes:
+                print("** class doesn't exist **")
+                return
+            try:
+                cls = eval(class_name)
+            except:
+                print("** class doesn't exist **")
+                return
+            try:
+                method = getattr(cls, method_name)
+            except AttributeError:
+                print("** method doesn't exist **")
+                return
+            print(method())
+        else:
+            print("** invalid syntax **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
