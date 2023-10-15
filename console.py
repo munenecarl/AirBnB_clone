@@ -25,6 +25,45 @@ class HBNBCommand(cmd.Cmd):
     """HBNBCommand class that contains the entry point of the command interpreter"""
 
     prompt = "(hbnb) "
+    file = None
+
+    def cmdloop(self, intro=None):
+        print("(hbnb)\n")
+        if intro is not None:
+            self.intro = intro
+        if self.use_rawinput and self.completekey:
+            try:
+                import readline
+                self.old_completer = readline.get_completer()
+                readline.set_completer(self.complete)
+                readline.parse_and_bind(self.completekey+": complete")
+            except ImportError:
+                pass
+        if self.intro:
+            self.stdout.write(str(self.intro)+"\n")
+        stop = None
+        while not stop:
+            if self.file and self.file.readline():
+                line = self.file.readline().strip()
+            else:
+                try:
+                    if sys.stdin.isatty():
+                        self.prompt = "(hbnb) "
+                    else:
+                        self.prompt = ""
+                    line = input(self.prompt)
+                except EOFError:
+                    line = 'EOF'
+            line = self.precmd(line)
+            stop = self.onecmd(line)
+            stop = self.postcmd(stop, line)
+        if not sys.stdin.isatty():
+            self.stdout.write("(hbnb)\n")
+
+    def postcmd(self, stop, line):
+        if not sys.stdin.isatty():
+            self.prompt = ""
+        return stop
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
