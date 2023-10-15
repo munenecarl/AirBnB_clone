@@ -28,7 +28,8 @@ class HBNBCommand(cmd.Cmd):
     file = None
 
     def cmdloop(self, intro=None):
-        print("(hbnb)\n")
+        if not sys.stdin.isatty():
+            print("(hbnb)\n")
         if intro is not None:
             self.intro = intro
         if self.use_rawinput and self.completekey:
@@ -236,6 +237,35 @@ class HBNBCommand(cmd.Cmd):
             print(method())
         else:
             print("** invalid syntax **")
+
+        def help_EOF(self):
+            """Help command for EOF"""
+            print("EOF command to exit the program\n")
+
+        def help_update(self):
+            """Help command for update"""
+            print("Usage: update <class_name> <id> <attribute_name> \
+    <attribute_value>")
+
+        def help_create(self):
+            """Help command for create """
+            print("Usage: create <class_name>")
+
+        def help_show(self):
+            """Help command for show """
+            print("Usage: show <class_name> <id>")
+
+        def help_destroy(self):
+            """Help command for destroy """
+            print("Usage: destroy <class_name> <id>")
+
+        def help_all(self):
+            """Help command for all """
+            print("Usage: all <class_name>")
+
+        def help_count(self):
+            """Help command for count """
+            print("Usage: count <class_name>")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
