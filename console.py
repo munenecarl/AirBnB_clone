@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""module for console application"""
 
 import cmd
 import sys
